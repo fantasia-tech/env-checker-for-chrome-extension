@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "ENV checker ext",
+    "version": "1.0",
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "nativeMessaging",
+      "storage"
+    ],
+    "content_scripts": [
+        {
+            "run_at": "document_end",
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["background.js"]
+        }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "options_page": "options.html"
+}

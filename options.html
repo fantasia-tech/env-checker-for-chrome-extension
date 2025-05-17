@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+html, body {
+    font-size: 16px;
+}
+footer {
+    font-size: 0.8rem;
+    padding: 1rem 0 0;
+    text-align: center;
+}
+table#options-table {
+    border-collapse: collapse;
+    & tbody {
+        & th, & td {
+            border: 1px solid #cccccc; 
+        }
+        & td {
+            padding: 0.25rem 1rem;
+        }
+    }
+}
+.border {
+    border-bottom: 1px #cccccc solid;
+    padding: 1rem 0;
+}
+</style>
+</head>
+<body>
+<h1>ENV Checker Options</h1>
+<div class="border">
+<h2>Target Setting</h2>
+<input type="text" id="name" placeholder="name" value=""/>
+<input type="text" id="host-name" placeholder="ex) 127.0.0.1, localhost, example.com"/>
+<select id="type">
+    <option value="eq">eq</option>
+    <option value="regexp">regexp</option>
+</select>
+<input type="color" id="bg-color"/>
+<input type="color" id="text-color" value="#ffffff"/>
+<button id="appendBtn">SAVE</button>
+</tr>
+</table>
+<table id="options-table">
+    <thead><tr>
+        <th>Priority</th>
+        <th>Setting</th>
+        <th colspan="3"></th>
+    </tr></thead>
+    <tbody id='options'></tbody>
+</table>
+</div>
+<!--
+<div class="border">
+<h2>Global Setting</h2>
+<div>
+    <label>Label layout</label>
+    <select>
+        <option value="right">right</option>
+        <option value="left">left</option>
+    </select>
+</div>
+</div>
+-->
+<div class="border">
+    <button id="resetBtn">Reset</button>
+</div>
+<footer>
+    <span>Created by K.S <a href="https://github.com/fantasia-tech" target="_blank">Github</a>.</span>
+</footer>
+<script src="option.js"></script>
+</body>
+</html>
