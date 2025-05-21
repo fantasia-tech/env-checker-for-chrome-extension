@@ -8,22 +8,27 @@ const appendOptionFnc = () => {
         (result) => {
             let items = result.items;
             items.push({ name: name, type: type, hostName: hostName, bgColor: bgColor, textColor: textColor });
-            chrome.storage.sync.set(
-                {items: items},
-                () => { restoreOptions(); }
-            )
+            chrome.storage.sync.set({items: items}, () => { restoreOptions(); });
         }
     );
 };
+
 const resetOptionFnc = () => {
     if(window.confirm('Are you reset all options?')){
-        let defaultOptions = {items: [
+        setDefaultOptionFnc();
+    }
+};
+
+const setDefaultOptionFnc = () => {
+    let defaultOptions = {
+        items: [
             {name: 'Develop', type: 'eq', hostName: 'localhost', bgColor: '#ee0000', textColor: '#ffffff'},
             {name: 'Staging', type: 'regexp', hostName: '\\.local$', bgColor: '#ee8800', textColor: '#ffffff'},
             {name: 'Production', type: 'eq', hostName: 'github.com', bgColor: '#0099ff', textColor: '#ffffff'},
-        ]};
-        chrome.storage.sync.set(defaultOptions, () => { restoreOptions(); });
-    }
+        ],
+        global: {labelLayout: 'right', labelHidden: 'click'}
+    };
+    chrome.storage.sync.set(defaultOptions, () => { restoreOptions(); });
 };
 
 const upTarget = (n) => {
@@ -67,8 +72,12 @@ const deleteTarget = (n) => {
 };
 
 const restoreOptions = () => {
-    chrome.storage.sync.get(['items']).then(
+    chrome.storage.sync.get(['items', 'global']).then(
         (result) => {
+            if(result.items === undefined) { 
+                setDefaultOptionFnc();
+                return;
+            }
             let items = result.items;
             const options = document.getElementById('options');
             options.innerHTML = '';
@@ -103,6 +112,30 @@ const restoreOptions = () => {
                 tr.append(delTd);
                 options.append(tr);
             }
+            let labelLayout = result.global.labelLayout;
+            let labelLayoutSelectOptions = document.getElementById('labelLayout').options;
+            for(let i = 0; i < labelLayoutSelectOptions.length; i++) {
+                if(labelLayoutSelectOptions[i].value === labelLayout) {
+                    labelLayoutSelectOptions[i].selected = true;
+                }
+            }
+            let labelHidden = result.global.labelHidden;
+            let labelHiddenSelectOptions = document.getElementById('labelHidden').options;
+            for(let i = 0; i < labelHiddenSelectOptions.length; i++) {
+                if(labelHiddenSelectOptions[i].value === labelHidden) {
+                    labelHiddenSelectOptions[i].selected = true;
+                }
+            }
+        }
+    );
+};
+
+const saveGlobalFnc = () => {
+    let labelLayout = document.getElementById('labelLayout').value;
+    let labelHidden = document.getElementById('labelHidden').value;
+    chrome.storage.sync.get(['global']).then(
+        (_r) => {
+            chrome.storage.sync.set({global: {labelLayout: labelLayout, labelHidden: labelHidden}}, () => { restoreOptions(); });
         }
     );
 };
@@ -110,3 +143,4 @@ const restoreOptions = () => {
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.getElementById('appendBtn').addEventListener('click', appendOptionFnc);
 document.getElementById('resetBtn').addEventListener('click', resetOptionFnc);
+document.getElementById('saveGlobalBtn').addEventListener('click', saveGlobalFnc);
