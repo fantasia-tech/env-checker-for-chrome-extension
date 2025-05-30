@@ -1,0 +1,8 @@
+{
+    "extName": {
+        "message": "EnvChecker"
+    },
+    "extDescription": {
+        "message": "現在表示しているWebページの環境 (開発、ステージング、本番など) をラベルとして表示します。"
+    }
+}

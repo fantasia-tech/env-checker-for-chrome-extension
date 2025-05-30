@@ -11,6 +11,9 @@ footer {
     padding: 1rem 0 0;
     text-align: center;
 }
+.text-center {
+    text-align: center;
+}
 table#options-table {
     border-collapse: collapse;
     & tbody {
@@ -31,45 +34,71 @@ table#options-table {
 <body>
 <h1>ENV Checker Options</h1>
 <div class="border">
-<h2>Target Setting</h2>
-<input type="text" id="name" placeholder="name" value=""/>
-<input type="text" id="host-name" placeholder="ex) 127.0.0.1, localhost, example.com"/>
-<select id="type">
-    <option value="eq">eq</option>
-    <option value="regexp">regexp</option>
-</select>
-<input type="color" id="bg-color"/>
-<input type="color" id="text-color" value="#ffffff"/>
-<button id="appendBtn">SAVE</button>
-</tr>
-</table>
-<table id="options-table">
-    <thead><tr>
-        <th>Priority</th>
-        <th>Setting</th>
-        <th colspan="3"></th>
-    </tr></thead>
-    <tbody id='options'></tbody>
-</table>
+    <h2>Target Setting</h2>
+    <table>
+        <tr>
+            <th>Label Name</th><td><input type="text" id="name" value=""/></td>
+        </tr>
+        <tr><th>Host</th><td><input type="text" id="host-name"/></td></tr>
+        <tr>
+            <th>Match Type</th>
+            <td>
+                <select id="type">
+                <option value="eq">eq</option>
+                <option value="regexp">regexp</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Background Color</th>
+            <td><input type="color" id="bg-color"/></td>
+        </tr>
+        <tr>
+            <th>Text Color</th>
+            <td><input type="color" id="text-color" value="#ffffff"/></td>
+        </tr>
+        <tr><td colspan="2" class="text-center"><button id="appendBtn">Save</button></td></tr>
+    </table>
 </div>
 <div class="border">
-<h2>Global Setting</h2>
-<div>
-    <div>
-        <label>Layout</label>
-        <select id="labelLayout">
-            <option value="right">right</option>
-            <option value="left">left</option>
-        </select>
-    </div>
-    <div>
-        <label>Hidden</label>
-        <select id="labelHidden">
-            <option value="click">click</option>
-        </select>
-    </div>
-    <button id="saveGlobalBtn">Save</button>
+    <h2>Label List</h2>
+    <table id="options-table">
+        <thead><tr>
+            <th>Priority</th>
+            <th>Setting</th>
+            <th colspan="3"></th>
+        </tr></thead>
+        <tbody id='options'></tbody>
+    </table>
 </div>
+<div class="border">
+    <h2>Global Setting</h2>
+    <table>
+        <tr>
+            <th>Layout</th>
+            <td>
+                <select id="labelLayout">
+                <option value="right">right</option>
+                <option value="left">left</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Z-Index</th>
+            <td><input type='number' id="labelZIndex" min="0"></td>
+        </tr>
+        <tr>
+            <th>Hidden</th>
+            <td>
+                <select id="labelHidden">
+                    <option value="click">click</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center"><button id="saveGlobalBtn">Save</button></td>
+        </tr>
+    </table>
 </div>
 <div class="border">
     <button id="resetBtn">Reset</button>

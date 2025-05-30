@@ -12,7 +12,6 @@ I created This Project reason was i checking env. (Develop, Staging, Production,
 
 1. Download
 1. Install
-1. Click Extention
 1. Go to options
 1. Write your configuration
 
@@ -20,3 +19,4 @@ I created This Project reason was i checking env. (Develop, Staging, Production,
 
 2025/05/17 0.1.0 Initial  
 2025/05/21 0.2.0 Update permissions
+2025/05/30 0.3.0 Set en/ja and add z-index option

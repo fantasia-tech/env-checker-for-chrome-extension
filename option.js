@@ -26,7 +26,7 @@ const setDefaultOptionFnc = () => {
             {name: 'Staging', type: 'regexp', hostName: '\\.local$', bgColor: '#ee8800', textColor: '#ffffff'},
             {name: 'Production', type: 'eq', hostName: 'github.com', bgColor: '#0099ff', textColor: '#ffffff'},
         ],
-        global: {labelLayout: 'right', labelHidden: 'click'}
+        global: {labelLayout: 'right', labelHidden: 'click', labelZIndex: 99999}
     };
     chrome.storage.sync.set(defaultOptions, () => { restoreOptions(); });
 };
@@ -126,6 +126,8 @@ const restoreOptions = () => {
                     labelHiddenSelectOptions[i].selected = true;
                 }
             }
+            let labelZIndex = result.global.labelZIndex;
+            document.getElementById('labelZIndex').value = labelZIndex;
         }
     );
 };
@@ -133,9 +135,10 @@ const restoreOptions = () => {
 const saveGlobalFnc = () => {
     let labelLayout = document.getElementById('labelLayout').value;
     let labelHidden = document.getElementById('labelHidden').value;
+    let labelZIndex = document.getElementById('labelZIndex').value;
     chrome.storage.sync.get(['global']).then(
         (_r) => {
-            chrome.storage.sync.set({global: {labelLayout: labelLayout, labelHidden: labelHidden}}, () => { restoreOptions(); });
+            chrome.storage.sync.set({global: {labelLayout: labelLayout, labelHidden: labelHidden, labelZIndex: labelZIndex}}, () => { restoreOptions(); });
         }
     );
 };

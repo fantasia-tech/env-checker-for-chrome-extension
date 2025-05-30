@@ -1,5 +1,5 @@
 const createEnvmarkFnc = (item, global) => {
-    const envmark = document.createElement('div');
+    const envmark = document.createElement('a');
     const uuid = crypto.randomUUID();
     const labelID = `label-ec4ce-${uuid}`;
     envmark.id = labelID;
@@ -8,6 +8,7 @@ const createEnvmarkFnc = (item, global) => {
     envmark.style.position = 'fixed';
     envmark.style.width = '160px';
     envmark.style.textAlign = 'center';
+    envmark.style.textDecoration = 'none';
     envmark.style.top = '35px';
     if(global.labelLayout === 'right') {
         envmark.style.right = '-35px';
@@ -16,10 +17,11 @@ const createEnvmarkFnc = (item, global) => {
         envmark.style.left = '-35px';
         envmark.style.transform = "rotate(-45deg)";
     }
-    envmark.style.zIndex = 9999999;
+    envmark.style.zIndex = global.labelZIndex;
     envmark.style.padding = '5px 0';
     envmark.style.lineHeight = "15px";
     envmark.style.fontSize = "15px";
+    envmark.style.cursor = "pointer";
     envmark.innerText = item.name;
     if(global.labelHidden === 'click') {
         envmark.onclick = delLabel.bind(envmark, labelID);

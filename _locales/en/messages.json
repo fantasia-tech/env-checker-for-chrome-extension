@@ -1,0 +1,8 @@
+{
+    "extName": {
+        "message": "EnvChecker"
+    },
+    "extDescription": {
+        "message": "Displays the environment (Develop, Staging, Production and other) of the currently viewed web page as a label."
+    }
+}
