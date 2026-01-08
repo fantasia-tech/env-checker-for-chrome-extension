@@ -1,7 +1,13 @@
 const createEnvmarkFnc = (item, global) => {
     const envmark = document.createElement('a');
-    const uuid = crypto.randomUUID();
-    const labelID = `label-ec4ce-${uuid}`;
+    let uniqName;
+    try {
+        uniqName = crypto.randomUUID();
+    } catch (e) {
+        // unsecure http
+        uniqName = `unsecure-http-${Math.random().toString(36).substring(2, 15)}`;
+    }
+    const labelID = `label-ec4ce-${uniqName}`;
     envmark.id = labelID;
     envmark.style.backgroundColor = item.bgColor;
     envmark.style.color = item.textColor;

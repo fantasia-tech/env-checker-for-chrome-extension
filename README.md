@@ -17,6 +17,7 @@ I created This Project reason was i checking env. (Develop, Staging, Production,
 
 ## Versions
 
-2025/05/17 0.1.0 Initial  
+2026/01/08 0.3.1 Fixed unsecure(http) request  
+2025/05/30 0.3.0 Set en/ja and add z-index option  
 2025/05/21 0.2.0 Update permissions  
-2025/05/30 0.3.0 Set en/ja and add z-index option
+2025/05/17 0.1.0 Initial
